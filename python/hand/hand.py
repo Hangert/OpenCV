@@ -4,7 +4,6 @@ import mediapipe as mp
 cap = cv2.VideoCapture(0)
 hands = mp.solutions.hands.Hands(max_num_hands=1)
 draw = mp.solutions.drawing_utils
-print(type(draw))
 
 while cap.isOpened():
     success, image = cap.read()
