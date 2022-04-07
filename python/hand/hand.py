@@ -4,11 +4,9 @@ import mediapipe as mp
 cap = cv2.VideoCapture(0)
 hands = mp.solutions.hands.Hands(max_num_hands=1)
 draw = mp.solutions.drawing_utils
+print(type(draw))
 
-while True:
-    if cv2.waitKey(1) & 0xFF == 27:
-        break
-
+while cap.isOpened():
     success, image = cap.read()
     image = cv2.flip(image, -1)
     imageRGB = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
@@ -23,3 +21,6 @@ while True:
             draw.draw_landmarks(image, handLms, mp.solutions.hands.HAND_CONNECTIONS)
 
     cv2.imshow("Hand", image)
+
+    if cv2.waitKey(1) & 0xFF == 27:
+        cap.release()
